@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.springsecuritywithjwt.authentication.PersonRepository">
+  <select id="findByCondition" resultType="com.example.springsecuritywithjwt.authentication.Person">
+	SELECT id, username, password, age, email, age, enabled, roles FROM person
+	<where>
+	  <if test="username != null">
+		AND username = #{username}
+	  </if>
+	  <if test="password != null">
+		AND password = #{password}
+	  </if>
+	  <if test="email != null">
+	    AND email = #{email}
+	  </if>
+	  <if test="age != null">
+	    AND age = #{age}
+	  </if>
+	  <if test="enabled">
+	    AND enabled = #{enabled}
+	  </if>
+	  <if test="roles != null">
+	    AND roles = #{roles}
+	  </if>
+	</where>
+  </select>
+</mapper>
